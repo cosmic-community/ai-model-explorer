@@ -33,10 +33,11 @@ export default async function ModelPage({ params }: PageProps) {
         <ModelDetail model={model} />
       </div>
     )
-  } catch (error) {
+  } catch (error: unknown) {
     if (hasStatus(error) && error.status === 404) {
       notFound()
     }
+    // Re-throw the error with proper typing
     throw error
   }
 }
