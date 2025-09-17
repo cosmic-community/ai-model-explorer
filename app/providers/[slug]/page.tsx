@@ -1,7 +1,13 @@
+// app/providers/[slug]/page.tsx
 import { cosmic } from '@/lib/cosmic'
 import { Provider, AiModel } from '@/types'
 import ProviderDetail from '@/components/ProviderDetail'
 import { notFound } from 'next/navigation'
+
+// Utility function to check if error has status
+function hasStatus(error: unknown): error is { status: number } {
+  return typeof error === 'object' && error !== null && 'status' in error;
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -35,7 +41,7 @@ export default async function ProviderPage({ params }: PageProps) {
       </div>
     )
   } catch (error) {
-    if (error.status === 404) {
+    if (hasStatus(error) && error.status === 404) {
       notFound()
     }
     throw error
