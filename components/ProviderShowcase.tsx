@@ -9,6 +9,11 @@ interface ProviderShowcaseProps {
 }
 
 export default function ProviderShowcase({ providers }: ProviderShowcaseProps) {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement
+    target.src = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
+  }
+
   if (!providers || providers.length === 0) {
     return (
       <div className="text-center py-8">
@@ -29,6 +34,7 @@ export default function ProviderShowcase({ providers }: ProviderShowcaseProps) {
                 src={iconUrl}
                 alt={`${provider.metadata?.name} logo`}
                 className="w-16 h-16 mx-auto mb-4"
+                onError={handleImageError}
               />
               
               <h3 className="text-xl font-semibold mb-2">

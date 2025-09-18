@@ -13,6 +13,11 @@ interface ProviderDetailProps {
 export default function ProviderDetail({ provider, models }: ProviderDetailProps) {
   const iconUrl = getProviderIconUrl(provider.metadata?.icon_slug)
   
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement
+    target.src = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
+  }
+  
   return (
     <div className="max-w-6xl mx-auto">
       {/* Provider Header */}
@@ -22,6 +27,7 @@ export default function ProviderDetail({ provider, models }: ProviderDetailProps
             src={iconUrl}
             alt={`${provider.metadata?.name} logo`}
             className="w-20 h-20"
+            onError={handleImageError}
           />
           <div>
             <h1 className="text-4xl font-bold mb-2">{provider.metadata?.name}</h1>
