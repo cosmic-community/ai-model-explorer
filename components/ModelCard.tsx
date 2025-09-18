@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { AiModel } from '@/types'
 import { getProviderIconUrl } from '@/lib/cosmic'
