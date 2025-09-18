@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Provider } from '@/types'
 import { getProviderIconUrl } from '@/lib/cosmic'
-import { useState } from 'react'
 
 interface ProviderShowcaseProps {
   providers: Provider[]
@@ -14,7 +13,6 @@ interface ProviderCardProps {
 }
 
 function ProviderCard({ provider }: ProviderCardProps) {
-  const [iconError, setIconError] = useState(false)
   const iconUrl = getProviderIconUrl(provider.metadata?.icon_slug)
   const fallbackUrl = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
 
@@ -22,10 +20,9 @@ function ProviderCard({ provider }: ProviderCardProps) {
     <Link key={provider.id} href={`/providers/${provider.slug}`}>
       <div className="glass-effect rounded-lg p-6 hover-card text-center">
         <img 
-          src={iconError ? fallbackUrl : iconUrl}
+          src={iconUrl}
           alt={`${provider.metadata?.name} logo`}
           className="w-16 h-16 mx-auto mb-4"
-          onError={() => setIconError(true)}
         />
         
         <h3 className="text-xl font-semibold mb-2">

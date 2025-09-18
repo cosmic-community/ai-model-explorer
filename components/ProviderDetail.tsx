@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Provider, AiModel } from '@/types'
 import { getProviderIconUrl } from '@/lib/cosmic'
 import ModelGrid from '@/components/ModelGrid'
-import { useState } from 'react'
 
 interface ProviderDetailProps {
   provider: Provider
@@ -12,9 +11,7 @@ interface ProviderDetailProps {
 }
 
 export default function ProviderDetail({ provider, models }: ProviderDetailProps) {
-  const [iconError, setIconError] = useState(false)
   const iconUrl = getProviderIconUrl(provider.metadata?.icon_slug)
-  const fallbackUrl = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
   
   return (
     <div className="max-w-6xl mx-auto">
@@ -22,10 +19,9 @@ export default function ProviderDetail({ provider, models }: ProviderDetailProps
       <div className="glass-effect rounded-lg p-8 mb-8">
         <div className="flex items-center space-x-6 mb-6">
           <img 
-            src={iconError ? fallbackUrl : iconUrl}
+            src={iconUrl}
             alt={`${provider.metadata?.name} logo`}
             className="w-20 h-20"
-            onError={() => setIconError(true)}
           />
           <div>
             <h1 className="text-4xl font-bold mb-2">{provider.metadata?.name}</h1>
