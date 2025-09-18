@@ -14,7 +14,6 @@ interface ProviderCardProps {
 
 function ProviderCard({ provider }: ProviderCardProps) {
   const iconUrl = getProviderIconUrl(provider.metadata?.icon_slug)
-  const fallbackUrl = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
 
   return (
     <Link key={provider.id} href={`/providers/${provider.slug}`}>
