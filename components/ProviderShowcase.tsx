@@ -29,9 +29,6 @@ export default function ProviderShowcase({ providers }: ProviderShowcaseProps) {
                 src={iconUrl}
                 alt={`${provider.metadata?.name} logo`}
                 className="w-16 h-16 mx-auto mb-4"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
-                }}
               />
               
               <h3 className="text-xl font-semibold mb-2">

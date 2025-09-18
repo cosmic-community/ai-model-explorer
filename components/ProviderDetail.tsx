@@ -22,9 +22,6 @@ export default function ProviderDetail({ provider, models }: ProviderDetailProps
             src={iconUrl}
             alt={`${provider.metadata?.name} logo`}
             className="w-20 h-20"
-            onError={(e) => {
-              e.currentTarget.src = 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/default.svg'
-            }}
           />
           <div>
             <h1 className="text-4xl font-bold mb-2">{provider.metadata?.name}</h1>
